@@ -1,8 +1,9 @@
 with source as (
-	select * from {{ source('main','central_park_weather')}}
+    select * from {{ source('main', 'central_park_weather') }}
 ),
 
 renamed as (
+
     select
         station,
         name,
@@ -14,6 +15,18 @@ renamed as (
         tmax::int as tmax,
         tmin::int as tmin,
         filename
+
     from source
+
 )
-select * from renamed
+
+select 
+    date,
+    awnd,
+    prcp,
+    snow,
+    snwd,
+    tmax,
+    tmin,
+    filename
+from renamed
