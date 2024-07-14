@@ -1,0 +1,377 @@
+models:
+  - name: stg__fhv_bases
+    description: "Contains information about For-Hire Vehicle (FHV) bases."
+    columns:
+      - name: base_number
+        data_type: varchar
+        description: "The TLC license number of the dispatching base."
+        tests:
+          - not_null: {}
+          - unique: {}
+
+      - name: base_name
+        data_type: varchar
+        description: "The official name of the base entity."
+
+      - name: dba
+        data_type: varchar
+        description: "The 'doing business as' name of the base."
+
+      - name: dba_category
+        data_type: varchar
+        description: "The category or type of business operation for the base's DBA name."
+
+      - name: filename
+        data_type: varchar
+        description: "Name of the original table where this data is retrieved from."
+
+  - name: stg__bike_data
+    description: "Records data on individual bike rental trips."
+    columns:
+      - name: started_at_ts
+        data_type: timestamp
+        description: "Timestamp when the bike trip started."
+        tests: 
+          - not_null: {}
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp
+
+      - name: ended_at_ts
+        data_type: timestamp
+        description: "Timestamp when the bike trip ended."
+        tests:
+          - not_null: {}
+          - dbt_expectations.expect_column_to_exist
+
+      - name: tripduration
+        data_type: bigint
+        description: "Duration of the bike trip in seconds."
+        tests:
+          - not_null: {}
+          - dbt_expectations.expect_column_to_exist
+
+      - name: start_station_id
+        data_type: varchar
+        description: "ID of the station where the trip started."
+        tests:
+          - not_null: {}
+
+      - name: start_station_name
+        data_type: varchar
+        description: "Name of the station where the trip started."
+
+      - name: start_lat
+        data_type: double
+        description: "Latitude of the start station."
+
+      - name: start_lng
+        data_type: double
+        description: "Longitude of the start station."
+
+      - name: end_station_id
+        data_type: varchar
+        description: "ID of the station where the trip ended."
+        tests:
+          - not_null: {}
+
+      - name: end_station_name
+        data_type: varchar
+        description: "Name of the station where the trip ended."
+
+      - name: end_lat
+        data_type: double
+        description: "Latitude of the end station."
+
+      - name: end_lng
+        data_type: double
+        description: "Longitude of the end station."
+
+      - name: filename
+        data_type: varchar
+        description: "Name of the original table where this data is retrieved from."
+
+  - name: stg__fhv_tripdata
+    description: "Records data for For-Hire Vehicle (FHV) trips."
+    columns:
+      - name: dispatching_base_num
+        data_type: varchar
+        description: "The TLC Base License Number of the base that dispatched the trip."
+        tests:
+          - not_null: {}
+          - dbt_expectations.expect_column_to_exist
+          - relationships:
+              to: ref('stg__fhv_bases')
+              field: base_number
+
+      - name: pickup_datetime
+        data_type: timestamp
+        description: "The date and time of the trip pick-up."
+        tests:
+          - not_null: {}
+
+      - name: dropoff_datetime
+        data_type: timestamp
+        description: "The date and time of the trip dropoff."
+        tests:
+          - not_null: {}
+
+      - name: pulocationid
+        data_type: double
+        description: "TLC Taxi Zone in which the trip began."
+        tests:
+          - not_null: {}
+
+      - name: dolocationid
+        data_type: double
+        description: "TLC Taxi Zone in which the trip ended."
+        tests:
+          - not_null: {}
+
+      - name: affiliated_base_number
+        data_type: varchar
+        description: "The TLC Base License Number to which the vehicle is affiliated."
+
+      - name: filename
+        data_type: varchar
+        description: "Name of the original table where this data is retrieved from."
+
+  - name: stg__fhvhv_tripdata
+    description: "Records data for High Volume For-Hire Vehicle (FHVHV) trips."
+    columns:
+      - name: hvfhs_license_num
+        data_type: varchar
+        description: "The TLC license number of the HVFHS base or business."
+        tests:
+          - not_null: {}
+
+      - name: dispatching_base_num
+        data_type: varchar
+        description: "The TLC Base License Number of the base that dispatched the trip."
+        tests:
+          - not_null: {} 
+          - relationships:
+              to: ref('stg__fhv_bases')
+              field: base_number
+
+      - name: originating_base_num
+        data_type: varchar
+        description: "Base number of the base that received the original trip request."
+        tests:
+          - not_null: {}
+          - relationships:
+              to: ref('stg__fhv_bases')
+              field: base_number
+
+      - name: request_datetime
+        data_type: timestamp
+        description: "Date and time of the trip request."
+        tests:
+          - not_null: {}
+
+      - name: on_scene_datetime
+        data_type: timestamp
+        description: "Date/time when the driver arrived at the pick-up location (Accessible Vehicles-only)."
+
+      - name: pickup_datetime
+        data_type: timestamp
+        description: "The date and time of the trip pick-up."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_to_exist
+
+      - name: dropoff_datetime
+        data_type: timestamp
+        description: "The date and time of the trip drop-off."
+        tests:
+          - not_null: {}
+          - dbt_expectations.expect_column_to_exist
+
+      - name: pulocationid
+        data_type: bigint
+        description: "TLC Taxi Zone in which the trip began."
+        tests:
+          - not_null: {}
+
+      - name: dolocationid
+        data_type: bigint
+        description: "TLC Taxi Zone in which the trip ended."
+        tests:
+          - not_null: {}
+
+      - name: trip_miles
+        data_type: double
+        description: "Total miles for passenger trip."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0  
+              max_value: 5000
+
+      - name: trip_time
+        data_type: bigint
+        description: "Total time in seconds for passenger trip."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: base_passenger_fare
+        data_type: double
+        description: "Base passenger fare before tolls, tips, taxes, and fees."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: tolls
+        data_type: double
+        description: "Total amount of all tolls paid in trip."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: bcf
+        data_type: double
+        description: "Total amount collected in trip for Black Car Fund."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: sales_tax
+        data_type: double
+        description: "Total amount collected in trip for NYS sales tax."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: congestion_surcharge
+        data_type: double
+        description: "Total amount collected in trip for NYS congestion surcharge."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: airport_fee
+        data_type: double
+        description: "$2.50 for both drop off and pick up at LaGuardia, Newark, and John F. Kennedy airports."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: tips
+        data_type: double
+        description: "Total amount of tips received from passenger."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: driver_pay
+        data_type: double
+        description: "Total driver pay (not including tolls or tips and net of commission, surcharges, or taxes)."
+        tests:
+          - not_null: {} 
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: shared_request_flag
+        data_type: boolean
+        description: "Did the passenger agree to a shared/pooled ride, regardless of whether they were matched? (Y/N)"
+        tests:
+          - not_null: {}
+          - accepted_values:
+              values: ['Y', 'N']
+
+      - name: shared_match_flag
+        data_type: boolean
+        description: "Indicates whether the trip was matched with another shared trip (e.g., Uber Pool, Lyft Line)."
+        tests:
+          - not_null: {}
+
+      - name: access_a_ride_flag
+        data_type: boolean
+        description: "Was the trip administered on behalf of the Metropolitan Transportation Authority (MTA)? (Y/N)"
+        tests:
+          - not_null: {}
+          - accepted_values:
+              values: ['Y', 'N']
+              config:
+                severity: warn
+
+      - name: wav_request_flag
+        data_type: boolean
+        description: "Did the passenger request a wheelchair-accessible vehicle (WAV)? (Y/N)"
+        tests:
+          - not_null: {}
+          - accepted_values:
+              values: ['Y', 'N']
+
+      - name: wav_match_flag
+        data_type: boolean
+        description: "Did the trip occur in a wheelchair-accessible vehicle (WAV)? (Y/N)"
+        tests:
+          - not_null: {}
+          - accepted_values:
+              values: ['Y', 'N']
+
+      - name: filename
+        data_type: varchar
+        description: "Name of the original table where this data is retrieved from."
+
+  - name: stg__central_park_weather
+    description: "Records weather conditions in Central Park."
+    columns:
+      - name: date
+        data_type: date
+        description: "Date of the recorded weather data."
+        tests:
+          - not_null: {}
+
+      - name: awnd
+        data_type: double
+        description: "Average wind speed for the day."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: prcp
+        data_type: double
+        description: "Precipitation amount for the day."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: snow
+        data_type: double
+        description: "Snowfall amount for the day."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: snwd
+        data_type: double
+        description: "Snow depth on the ground."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0 
+
+      - name: tmax
+        data_type: integer
+        description: "Maximum temperature for the day."
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "tmax >= tmin"
+
+      - name: tmin
+        data_type: integer
+        description: "Minimum temperature for the day."
+
+      - name: filename
+        data_type: varchar
+        description: "Name of the original table where this data is retrieved from."

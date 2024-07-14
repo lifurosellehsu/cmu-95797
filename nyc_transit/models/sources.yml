@@ -2,258 +2,483 @@ sources:
   - name: main
     tables:
       - name: bike_data
+        description: "Records data on individual bike rental trips, including information such as 
+                      trip duration, start and end times, start and end stations, and bike and rider details."
         columns:
           - name: tripduration
-            data_type: varchar
+            description: "Trip Duration (seconds)"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: starttime
-            data_type: varchar
+            description: "trip start time"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: stoptime
-            data_type: varchar
+            description: "trip end time"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: start station id
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: start station name
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: start station latitude
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: start station longitude
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: end station id
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: end station name
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: end station latitude
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: end station longitude
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: bikeid
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: usertype
-            data_type: varchar
+            description: "User Type (Customer = 24-hour pass or 3-day pass user; Subscriber = Annual Member)"
+            data_type: CHARACTER VARYING(256)
           - name: birth year
-            data_type: varchar
+            description: "rider's Year of Birth"
+            data_type: CHARACTER VARYING(256)
           - name: gender
-            data_type: varchar
+            description: "Gender (Zero=unknown; 1=male; 2=female)"
+            data_type: CHARACTER VARYING(256)
           - name: ride_id
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
+              - unique # assuming this is the Primary Key of table
           - name: rideable_type
-            data_type: varchar
+            description: "Rideable type"
+            data_type: CHARACTER VARYING(256)
           - name: started_at
-            data_type: varchar
+            description: "trip start location"
+            data_type: CHARACTER VARYING(256)
           - name: ended_at
-            data_type: varchar
+            description: "trip end location"
+            data_type: CHARACTER VARYING(256)
           - name: start_station_name
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: start_station_id
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: end_station_name
-            data_type: varchar
-          - name: end_station_id
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
+          - name: end_station_id # not setting not_null: {} condition in case the trip was never ended due to tech issues
+            data_type: CHARACTER VARYING(256)
           - name: start_lat
-            data_type: varchar
+            description: "Start latitude"
+            data_type: CHARACTER VARYING(256)
           - name: start_lng
-            data_type: varchar
+            description: "Start longitude"
+            data_type: CHARACTER VARYING(256)
           - name: end_lat
-            data_type: varchar
+            description: "End latitude"
+            data_type: CHARACTER VARYING(256)
           - name: end_lng
-            data_type: varchar
+            description: "End Longitude"
+            data_type: CHARACTER VARYING(256)
           - name: member_casual
-            data_type: varchar
+            description: "Member or casual ride"
+            data_type: CHARACTER VARYING(256)
           - name: filename
-            data_type: varchar
+            description: "Name of the original table where this data is retrieved from"
+            data_type: CHARACTER VARYING(256)
 
       - name: central_park_weather
+        description: "Records weather conditions in Central Park.
+                      Including temperature, precipitation, wind speed, and other meteorological variables."
         columns:
           - name: station
-            data_type: varchar
+            description: "Identifier for the weather station"
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {}
           - name: name
-            data_type: varchar
+            description: "Name of the weather station"
+            data_type: CHARACTER VARYING(256)
           - name: date
-            data_type: varchar
+            description: "Date of the recorded weather data"
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {}
           - name: awnd
-            data_type: varchar
+            description: "Average wind speed for the day."
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: prcp
-            data_type: varchar
+            description: "Precipitation amount for the day"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: snow
-            data_type: varchar
+            description: "Snowfall amount for the day"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: snwd
-            data_type: varchar
+            description: "Snow depth on the ground"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0  
           - name: tmax
-            data_type: varchar
+            description: "Maximum temperature for the day"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - dbt_utils.expression_is_true:
+                  expression: "tmax >= tmin"  # Fix indentation
           - name: tmin
-            data_type: varchar
+            description: "Minimum temperature for the day"
+            data_type: CHARACTER VARYING(256)
           - name: filename
-            data_type: varchar
+            description: "Name of the original table where this data is retrieved from"
+            data_type: CHARACTER VARYING(256)
 
       - name: fhv_bases
+        description: "Records details about For-Hire Vehicle (FHV) bases, including licensing and business information."
         columns:
           - name: base_number
-            data_type: varchar
+            description: "The TLC license number of the dispatching base"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: base_name
-            data_type: varchar
+            description: "The official name of the base entity"
+            data_type: CHARACTER VARYING(256)
           - name: dba
-            data_type: varchar
+            description: "The “doing business as” name of the base"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: dba_category
-            data_type: varchar
+            description: "The category or type of business operation for the base's DBA name"
+            data_type: CHARACTER VARYING(256)
           - name: filename
-            data_type: varchar
+            description: "Name of the original table where this data is retrieved from"
+            data_type: CHARACTER VARYING(256)
 
       - name: fhv_tripdata
+        description: "Records data for For-Hire Vehicle (FHV) trips.
+                      Including pick-up and drop-off times, locations, dispatching and affiliated bases, 
+                      and whether the trip was part of a shared ride."
         columns:
           - name: dispatching_base_num
-            data_type: varchar
+            description: "The TLC Base License Number of the base that dispatched the trip "
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
+              - dbt_expectations.expect_column_to_exist
+              - relationships:
+                  to: source('main','fhv_bases')
+                  field: base_number
           - name: pickup_datetime
-            data_type: timestamp
+            description: "The date and time of the trip pick-up  "
+            data_type: TIMESTAMP
+            data_tests:
+              - not_null: {}
           - name: dropoff_datetime
-            data_type: timestamp
+            description: "The date and time of the trip dropoff "
+            data_type: TIMESTAMP
+            data_tests:
+              - not_null: {}
           - name: pulocationid
-            data_type: double
+            description: "TLC Taxi Zone in which the trip began "
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {}
           - name: dolocationid
-            data_type: double
+            description: "TLC Taxi Zone in which the trip began "
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {}
           - name: sr_flag
-            data_type: integer
+            description: "Indicates if the trip was a part of a shared ride chain offered by a High Volume FHV company (e.g. Uber Pool, Lyft Line). 
+                          For shared trips, the value is 1. For non-shared rides, this field is null"
+            data_type: INTEGER
+            data_tests:
+              - not_null: {}
           - name: affiliated_base_number
-            data_type: varchar
+            description: "The TLC Base License Number to which the vehicle is affiliated"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - relationships:
+                  to: source('main','fhv_bases')
+                  field: base_number
           - name: filename
-            data_type: varchar
+            description: "Name of the original table where this data is retrieved from"
+            data_type: CHARACTER VARYING(256)
 
       - name: fhvhv_tripdata
+        description: "Records data for High Volume For-Hire Vehicle (FHVHV) trips.
+                      Icluding pick-up and drop-off times, locations, dispatching and affiliated bases, 
+                      and shared ride details for high volume services like Uber and Lyft."
         columns:
           - name: hvfhs_license_num
-            data_type: varchar
+            description: "The TLC license number of the HVFHS base or business
+                          As of September 2019, the HVFHS licensees are the following, 
+                          HV0002- Juno 
+                          HV0003- Uber 
+                          HV0004- Via 
+                          HV0005- Lyft"
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
           - name: dispatching_base_num
-            data_type: varchar
+            description: "The TLC Base License Number of the base that dispatched the trip"
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {} 
+              - relationships:
+                  to: source('main','fhv_bases')
+                  field: base_number
           - name: originating_base_num
-            data_type: varchar
+            description: "base number of the base that received the original trip request "
+            data_type: CHARACTER VARYING(256)
+            data_tests:
+              - not_null: {}
+              - relationships:
+                  to: source('main','fhv_bases')
+                  field: base_number
           - name: request_datetime
-            data_type: timestamp
+            description: "base number of the base that received the original trip request "
+            data_type: TIMESTAMP
+            data_tests:
+              - not_null: {}
           - name: on_scene_datetime
-            data_type: timestamp
+            description: "date/time when driver arrived at the pick-up location (Accessible Vehicles-only) "
+            data_type: TIMESTAMP
           - name: pickup_datetime
-            data_type: timestamp
+            description: "The date and time of the trip pick-up"
+            data_type: TIMESTAMP
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_to_exist
           - name: dropoff_datetime
-            data_type: timestamp
+            description: "The date and time of the trip drop-off"
+            data_type: TIMESTAMP
+            data_tests:
+              - not_null: {}
+              - dbt_expectations.expect_column_to_exist
           - name: pulocationid
-            data_type: bigint
+            description: "TLC Taxi Zone in which the trip began"
+            data_type: BIGINT
+            data_tests:
+              - not_null: {}
           - name: dolocationid
-            data_type: bigint
+            description: "TLC Taxi Zone in which the trip ended"
+            data_type: BIGINT
+            data_tests:
+              - not_null: {}
           - name: trip_miles
-            data_type: double
+            description: "total miles for passenger trip"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0  
+                  max_value: 5000
           - name: trip_time
-            data_type: bigint
+            description: "total time in seconds for passenger trip"
+            data_type: BIGINT
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: base_passenger_fare
-            data_type: double
+            description: "base passenger fare before tolls, tips, taxes, and fees"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: tolls
-            data_type: double
+            description: "total amount of all tolls paid in trip"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: bcf
-            data_type: double
+            description: "total amount collected in trip for Black Car Fund"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: sales_tax
-            data_type: double
+            description: "total amount collected in trip for NYS sales tax"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0  
           - name: congestion_surcharge
-            data_type: double
+            description: "total amount collected in trip for NYS congestion surcharge"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0  
           - name: airport_fee
-            data_type: double
+            description: "$2.50 for both drop off and pick up at LaGuardia, Newark, and John F. Kennedy airports"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: tips
-            data_type: double
+            description: "total amount of tips received from passenger"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0 
           - name: driver_pay
-            data_type: double
+            description: "total driver pay (not including tolls or tips and net of commission, surcharges, or taxes)"
+            data_type: DOUBLE
+            data_tests:
+              - not_null: {} 
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0  
           - name: shared_request_flag
-            data_type: varchar
+            description: "Did the passenger agree to a shared/pooled ride, regardless of whether they were matched? (Y/N)"
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {}
+              - accepted_values:
+                  values: ['Y', 'N']
           - name: shared_match_flag
-            data_type: varchar
+            description: "Indicates whether the trip was matched with another shared trip (e.g., Uber Pool, Lyft Line)."
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+             - not_null: {}
           - name: access_a_ride_flag
-            data_type: varchar
+            description: "Was the trip administered on behalf of the Metropolitan Transportation Authority (MTA)? (Y/N)"
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {}
+              - accepted_values:
+                  values: ['Y', 'N']
+                  config:
+                    severity: warn
           - name: wav_request_flag
-            data_type: varchar
+            description: "Did the passenger request a wheelchair-accessible vehicle (WAV)? (Y/N)"
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {}
+              - accepted_values:
+                  values: ['Y', 'N']
           - name: wav_match_flag
-            data_type: varchar
+            description: "Did the trip occur in a wheelchair-accessible vehicle (WAV)? (Y/N) "
+            data_type: CHARACTER VARYING(256)
+            data_tests: 
+              - not_null: {}
+              - accepted_values:
+                  values: ['Y', 'N']
           - name: filename
-            data_type: varchar
+            description: "Name of the original table where this data is retrieved from"
+            data_type: CHARACTER VARYING(256)
 
       - name: green_tripdata
         columns:
           - name: vendorid
-            data_type: bigint
+            data_type: BIGINT
           - name: lpep_pickup_datetime
-            data_type: timestamp
+            data_type: TIMESTAMP
           - name: lpep_dropoff_datetime
-            data_type: timestamp
+            data_type: TIMESTAMP
           - name: store_and_fwd_flag
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: ratecodeid
-            data_type: double
+            data_type: DOUBLE
           - name: pulocationid
-            data_type: bigint
+            data_type: BIGINT
           - name: dolocationid
-            data_type: bigint
+            data_type: BIGINT
           - name: passenger_count
-            data_type: double
+            data_type: DOUBLE
           - name: trip_distance
-            data_type: double
+            data_type: DOUBLE
           - name: fare_amount
-            data_type: double
+            data_type: DOUBLE
           - name: extra
-            data_type: double
+            data_type: DOUBLE
           - name: mta_tax
-            data_type: double
+            data_type: DOUBLE
           - name: tip_amount
-            data_type: double
+            data_type: DOUBLE
           - name: tolls_amount
-            data_type: double
+            data_type: DOUBLE
           - name: ehail_fee
-            data_type: integer
+            data_type: INTEGER
           - name: improvement_surcharge
-            data_type: double
+            data_type: DOUBLE
           - name: total_amount
-            data_type: double
+            data_type: DOUBLE
           - name: payment_type
-            data_type: double
+            data_type: DOUBLE
           - name: trip_type
-            data_type: double
+            data_type: DOUBLE
           - name: congestion_surcharge
-            data_type: double
+            data_type: DOUBLE
           - name: filename
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
 
       - name: yellow_tripdata
         columns:
           - name: vendorid
-            data_type: bigint
+            data_type: BIGINT
           - name: tpep_pickup_datetime
-            data_type: timestamp
+            data_type: TIMESTAMP
           - name: tpep_dropoff_datetime
-            data_type: timestamp
+            data_type: TIMESTAMP
           - name: passenger_count
-            data_type: double
+            data_type: DOUBLE
           - name: trip_distance
-            data_type: double
+            data_type: DOUBLE
           - name: ratecodeid
-            data_type: double
+            data_type: DOUBLE
           - name: store_and_fwd_flag
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
           - name: pulocationid
-            data_type: bigint
+            data_type: BIGINT
           - name: dolocationid
-            data_type: bigint
+            data_type: BIGINT
           - name: payment_type
-            data_type: bigint
+            data_type: BIGINT
           - name: fare_amount
-            data_type: double
+            data_type: DOUBLE
           - name: extra
-            data_type: double
+            data_type: DOUBLE
           - name: mta_tax
-            data_type: double
+            data_type: DOUBLE
           - name: tip_amount
-            data_type: double
+            data_type: DOUBLE
           - name: tolls_amount
-            data_type: double
+            data_type: DOUBLE
           - name: improvement_surcharge
-            data_type: double
+            data_type: DOUBLE
           - name: total_amount
-            data_type: double
+            data_type: DOUBLE
           - name: congestion_surcharge
-            data_type: double
+            data_type: DOUBLE
           - name: airport_fee
-            data_type: double
+            data_type: DOUBLE
           - name: filename
-            data_type: varchar
+            data_type: CHARACTER VARYING(256)
