@@ -1,0 +1,3 @@
+total_trips_without_pickup_location
+-----------------------------------
+1588827                            

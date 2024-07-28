@@ -1,0 +1,264 @@
+Zone                                           average_time_between_pickups
+---------------------------------------------  ----------------------------
+Allerton/Pelham Gardens                        13.28                       
+Alphabet City                                  8.56                        
+Arden Heights                                  118.52                      
+Arrochar/Fort Wadsworth                        57.45                       
+Astoria                                        3.15                        
+Astoria Park                                   753.58                      
+Auburndale                                     38.45                       
+Baisley Park                                   57.23                       
+Bath Beach                                     27.94                       
+Battery Park                                   215.43                      
+Battery Park City                              6.39                        
+Bay Ridge                                      5.94                        
+Bay Terrace/Fort Totten                        45.87                       
+Bayside                                        17.43                       
+Bedford                                        3.33                        
+Bedford Park                                   5.7                         
+Bellerose                                      43.16                       
+Belmont                                        9.56                        
+Bensonhurst East                               11.86                       
+Bensonhurst West                               9.12                        
+Bloomfield/Emerson Hill                        22.68                       
+Bloomingdale                                   14.37                       
+Boerum Hill                                    5.92                        
+Borough Park                                   6.11                        
+Breezy Point/Fort Tilden/Riis Beach            320.65                      
+Briarwood/Jamaica Hills                        13.95                       
+Brighton Beach                                 14.29                       
+Broad Channel                                  661.48                      
+Bronx Park                                     67.27                       
+Bronxdale                                      10.45                       
+Brooklyn Heights                               6.86                        
+Brooklyn Navy Yard                             38.9                        
+Brownsville                                    3.99                        
+Bushwick North                                 4.09                        
+Bushwick South                                 2.67                        
+Cambria Heights                                28.05                       
+Canarsie                                       3.56                        
+Carroll Gardens                                13.6                        
+Central Harlem                                 3.79                        
+Central Harlem North                           2.77                        
+Central Park                                   7.22                        
+Charleston/Tottenville                         79.96                       
+Chinatown                                      13.56                       
+City Island                                    135.67                      
+Claremont/Bathgate                             7.6                         
+Clinton East                                   2.41                        
+Clinton Hill                                   5.27                        
+Clinton West                                   4.57                        
+Co-Op City                                     51.08                       
+Cobble Hill                                    22.25                       
+College Point                                  23.08                       
+Columbia Street                                60.37                       
+Coney Island                                   11.46                       
+Corona                                         8.69                        
+Country Club                                   101.59                      
+Crotona Park                                   180.0                       
+Crotona Park East                              10.84                       
+Crown Heights North                            1.96                        
+Crown Heights South                            7.58                        
+Cypress Hills                                  8.64                        
+DUMBO/Vinegar Hill                             9.64                        
+Douglaston                                     59.31                       
+Downtown Brooklyn/MetroTech                    6.96                        
+Dyker Heights                                  19.53                       
+East Chelsea                                   23.65                       
+East Concourse/Concourse Village               5.14                        
+East Elmhurst                                  13.07                       
+East Flatbush/Farragut                         6.04                        
+East Flatbush/Remsen Village                   4.86                        
+East Flushing                                  29.52                       
+East Harlem North                              3.23                        
+East Harlem South                              3.33                        
+East New York                                  2.48                        
+East New York/Pennsylvania Avenue              8.34                        
+East Tremont                                   6.19                        
+East Village                                   1.84                        
+East Williamsburg                              4.28                        
+Eastchester                                    10.17                       
+Elmhurst                                       4.27                        
+Elmhurst/Maspeth                               15.81                       
+Eltingville/Annadale/Prince's Bay              80.47                       
+Erasmus                                        8.6                         
+Far Rockaway                                   15.54                       
+Financial District North                       4.85                        
+Financial District South                       13.39                       
+Flatbush/Ditmas Park                           3.45                        
+Flatiron                                       3.4                         
+Flatlands                                      5.41                        
+Flushing                                       6.87                        
+Flushing Meadows-Corona Park                   61.74                       
+Fordham South                                  11.96                       
+Forest Hills                                   5.19                        
+Forest Park/Highland Park                      208.57                      
+Fort Greene                                    4.63                        
+Fresh Meadows                                  36.8                        
+Freshkills Park                                1340.14                     
+Garment District                               4.13                        
+Glen Oaks                                      42.51                       
+Glendale                                       12.82                       
+Governor's Island/Ellis Island/Liberty Island  69672.46                    
+Gowanus                                        16.34                       
+Gramercy                                       18.38                       
+Gravesend                                      20.76                       
+Great Kills                                    53.07                       
+Great Kills Park                               16770.93                    
+Green-Wood Cemetery                            679.29                      
+Greenpoint                                     4.29                        
+Greenwich Village North                        3.98                        
+Greenwich Village South                        4.38                        
+Grymes Hill/Clifton                            30.83                       
+Hamilton Heights                               37.69                       
+Hammels/Arverne                                17.5                        
+Heartland Village/Todt Hill                    31.9                        
+Highbridge                                     7.55                        
+Highbridge Park                                295.5                       
+Hillcrest/Pomonok                              14.33                       
+Hollis                                         25.57                       
+Homecrest                                      10.21                       
+Howard Beach                                   24.12                       
+Hudson Sq                                      8.69                        
+Hunts Point                                    8.79                        
+Inwood                                         8.08                        
+Inwood Hill Park                               117.6                       
+JFK Airport                                    13.18                       
+Jackson Heights                                25.58                       
+Jamaica                                        4.74                        
+Jamaica Bay                                    12885.31                    
+Jamaica Estates                                20.71                       
+Kensington                                     15.48                       
+Kew Gardens                                    15.18                       
+Kew Gardens Hills                              18.82                       
+Kingsbridge Heights                            9.97                        
+Kips Bay                                       3.7                         
+LaGuardia Airport                              15.33                       
+Laurelton                                      17.05                       
+Lenox Hill East                                3.19                        
+Lenox Hill West                                2.85                        
+Lincoln Square East                            18.4                        
+Lincoln Square West                            4.47                        
+Little Italy/NoLiTa                            27.02                       
+Long Island City/Hunters Point                 4.74                        
+Long Island City/Queens Plaza                  11.93                       
+Longwood                                       11.78                       
+Lower East Side                                3.17                        
+Madison                                        13.21                       
+Manhattan Beach                                27.9                        
+Manhattan Valley                               6.1                         
+Manhattanville                                 11.35                       
+Marble Hill                                    25.69                       
+Marine Park/Floyd Bennett Field                292.5                       
+Marine Park/Mill Basin                         10.09                       
+Mariners Harbor                                23.31                       
+Maspeth                                        12.22                       
+Meatpacking/West Village West                  5.16                        
+Melrose South                                  5.99                        
+Middle Village                                 15.34                       
+Midtown Center                                 14.15                       
+Midtown East                                   16.95                       
+Midtown North                                  3.03                        
+Midtown South                                  2.8                         
+Midwood                                        9.68                        
+Morningside Heights                            5.93                        
+Morrisania/Melrose                             6.77                        
+Mott Haven/Port Morris                         4.58                        
+Mount Hope                                     5.28                        
+Murray Hill                                    14.96                       
+Murray Hill-Queens                             16.45                       
+NA                                             35.89                       
+NV                                             1.19                        
+New Dorp/Midland Beach                         57.42                       
+Newark Airport                                 532.67                      
+North Corona                                   12.24                       
+Norwood                                        6.73                        
+Oakland Gardens                                49.78                       
+Oakwood                                        96.15                       
+Ocean Hill                                     5.85                        
+Ocean Parkway South                            28.87                       
+Old Astoria                                    8.74                        
+Ozone Park                                     19.64                       
+Park Slope                                     3.49                        
+Parkchester                                    10.99                       
+Pelham Bay                                     23.43                       
+Pelham Bay Park                                132.18                      
+Pelham Parkway                                 8.94                        
+Penn Station/Madison Sq West                   17.61                       
+Port Richmond                                  46.61                       
+Prospect Heights                               9.35                        
+Prospect Park                                  50.64                       
+Prospect-Lefferts Gardens                      3.6                         
+Queens Village                                 11.59                       
+Queensboro Hill                                24.81                       
+Queensbridge/Ravenswood                        124.64                      
+Randalls Island                                225.44                      
+Red Hook                                       16.48                       
+Rego Park                                      12.17                       
+Richmond Hill                                  7.49                        
+Ridgewood                                      5.16                        
+Rikers Island                                  71306.1                     
+Riverdale/North Riverdale/Fieldston            19.27                       
+Rockaway Park                                  51.78                       
+Roosevelt Island                               53.58                       
+Rosedale                                       17.74                       
+Rossville/Woodrow                              136.71                      
+Saint Albans                                   7.16                        
+Saint George/New Brighton                      13.31                       
+Saint Michaels Cemetery/Woodside               90.6                        
+Schuylerville/Edgewater Park                   9.64                        
+Seaport                                        14.36                       
+Sheepshead Bay                                 9.4                         
+SoHo                                           4.89                        
+Soundview/Bruckner                             10.48                       
+Soundview/Castle Hill                          5.21                        
+South Beach/Dongan Hills                       39.15                       
+South Jamaica                                  9.0                         
+South Ozone Park                               5.61                        
+South Williamsburg                             19.28                       
+Springfield Gardens North                      14.02                       
+Springfield Gardens South                      15.7                        
+Spuyten Duyvil/Kingsbridge                     8.84                        
+Stapleton                                      16.94                       
+Starrett City                                  21.63                       
+Steinway                                       6.43                        
+Stuy Town/Peter Cooper Village                 13.84                       
+Stuyvesant Heights                             3.36                        
+Sunnyside                                      5.14                        
+Sunset Park East                               13.28                       
+Sunset Park West                               6.56                        
+Sutton Place/Turtle Bay North                  22.13                       
+Times Sq/Theatre District                      2.69                        
+TriBeCa/Civic Center                           2.61                        
+Two Bridges/Seward Park                        6.18                        
+UN/Turtle Bay South                            4.23                        
+Union Sq                                       14.75                       
+University Heights/Morris Heights              5.74                        
+Upper East Side North                          2.2                         
+Upper East Side South                          19.57                       
+Upper West Side North                          3.32                        
+Upper West Side South                          18.83                       
+Van Cortlandt Park                             48.07                       
+Van Cortlandt Village                          7.16                        
+Van Nest/Morris Park                           7.08                        
+Washington Heights North                       5.19                        
+Washington Heights South                       3.42                        
+West Brighton                                  40.64                       
+West Chelsea/Hudson Yards                      3.02                        
+West Concourse                                 5.48                        
+West Farms/Bronx River                         10.35                       
+West Village                                   17.35                       
+Westchester Village/Unionport                  74.3                        
+Westerleigh                                    43.39                       
+Whitestone                                     24.06                       
+Willets Point                                  474.28                      
+Williamsbridge/Olinville                       5.71                        
+Williamsburg (North Side)                      23.74                       
+Williamsburg (South Side)                      4.06                        
+Windsor Terrace                                22.5                        
+Woodhaven                                      9.41                        
+Woodlawn/Wakefield                             9.39                        
+Woodside                                       7.49                        
+World Trade Center                             8.42                        
+Yorkville East                                 32.59                       
+Yorkville West                                 3.38                        

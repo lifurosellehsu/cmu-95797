@@ -1,0 +1,4 @@
+timing                   avg_bike_trips_per_day
+-----------------------  ----------------------
+day_of_prcp_and_snow     5504                  
+day_before_prcp_or_snow  6301                  
